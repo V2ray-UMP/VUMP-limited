@@ -33,6 +33,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv(delimiter=' '))
 
 INSTALLED_APPS = [
     # High priority third-party package
+    'django_admin_env_notice',
     'admin_interface',
     'colorfield',
     # Django packages
@@ -69,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_admin_env_notice.context_processors.from_settings',
             ],
         },
     },
@@ -134,3 +136,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#std-setting-AUTH_USER_MODEL
 
 AUTH_USER_MODEL = 'core.CustomUser'
+
+# django-admin-env-notice settings
+ENVIRONMENT_NAME = "Production server"
+ENVIRONMENT_COLOR = "#FF2222"
+# ENVIRONMENT_ADMIN_SELECTOR = "grp-header"
+ENVIRONMENT_FLOAT = True
+ENVIRONMENT_TEXT_COLOR = "#000000"
