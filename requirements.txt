@@ -1,2 +1,3 @@
 django==4.1
 python-decouple==3.6
+django-admin-interface==0.22.2

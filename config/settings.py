@@ -32,6 +32,10 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv(delimiter=' '))
 # Application definition
 
 INSTALLED_APPS = [
+    # High priority third-party package
+    'admin_interface',
+    'colorfield',
+    # Django packages
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,6 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
