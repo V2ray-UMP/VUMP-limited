@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third-party packages
     'djangoql',
+    'import_export',
     # Local apps
     'core',
 ]
