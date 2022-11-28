@@ -4,3 +4,4 @@ django-admin-interface==0.22.2
 django-admin-env-notice==0.4
 django-admin-easy==0.6.1
 django-import-export==3.0.1
+django-jazzmin==2.6.0
