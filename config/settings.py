@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'import_export',
     # Local apps
     'core',
+    'v2ray',
 ]
 
 MIDDLEWARE = [
