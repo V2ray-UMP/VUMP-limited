@@ -1,0 +1,277 @@
+{
+  "log": {
+    "loglevel": "info",
+    "access": "/var/log/v2ray/access.log",
+    "error": "/var/log/v2ray/error.log"
+  },
+  "routing": {
+    "rules": [
+      {
+        "inboundTag": [
+          "api"
+        ],
+        "outboundTag": "api",
+        "type": "field"
+      },
+      {
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "blocked",
+        "type": "field"
+      },
+      {
+        "outboundTag": "blocked",
+        "protocol": [
+          "bittorrent"
+        ],
+        "type": "field"
+      }
+    ],
+    "domainStrategy": "AsIs"
+  },
+  "dns": null,
+  "api": {
+    "services": [
+      "HandlerService",
+      "LoggerService",
+      "StatsService"
+    ],
+    "tag": "api"
+  },
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "port": 10085,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "0.0.0.0"
+      },
+      "streamSettings": null,
+      "tag": "api",
+      "sniffing": null
+    },
+    {
+      "listen": "0.0.0.0",
+      "port": 8395,
+      "protocol": "vmess",
+      "allocate": {
+        "strategy": "always"
+      },
+      "settings": {
+        "clients": [],
+        "default": {
+          "level": 0,
+          "alterId": 0
+        },
+        "disableInsecureEncryption": false
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "connectionReuse": true,
+          "path": "/websocket",
+          "headers": {}
+        },
+        "security": "none"
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "tag": "ws-8395"
+    },
+    {
+      "listen": "0.0.0.0",
+      "port": 8396,
+      "protocol": "vmess",
+      "allocate": {
+        "strategy": "always"
+      },
+      "settings": {
+        "clients": [],
+        "default": {
+          "level": 0,
+          "alterId": 0
+        },
+        "disableInsecureEncryption": false
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "connectionReuse": true,
+          "path": "/websocket",
+          "headers": {}
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "bmi.ir",
+          "certificates": [
+            {
+              "certificate": [
+                "-----BEGIN CERTIFICATE-----",
+                "MIIBtzCCAV6gAwIBAgIQA379XEEI3QU5yYbh2f8avTAKBggqhkjOPQQDAjAoMRIw",
+                "EAYDVQQKEwlWMlJheSBJbmMxEjAQBgNVBAMTCVYyUmF5IEluYzAeFw0yMjExMDgy",
+                "MjAzMDdaFw0yMzAyMDYyMzAzMDdaMCgxEjAQBgNVBAoTCVYyUmF5IEluYzESMBAG",
+                "A1UEAxMJVjJSYXkgSW5jMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEefaZcpjf",
+                "bmDJoCi6tSp8gOPVg3OPocoO8qn+CT10cqjuyjXXKZwAxeDFZmuK1iw0wSm3MUno",
+                "VyUrTRR8ek9hRKNqMGgwDgYDVR0PAQH/BAQDAgKkMBMGA1UdJQQMMAoGCCsGAQUF",
+                "BwMBMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFMaHDvHrSDkb+1h05HP/SIhX",
+                "H3AVMBEGA1UdEQQKMAiCBmJtaS5pcjAKBggqhkjOPQQDAgNHADBEAiAgTA1Gpzyb",
+                "93id8GjOhIFV07xujMCgngOVT/FA/xieRgIgbBsgqwDWDwWPNijmcm0GKEhm+DnH",
+                "CqpPuAX87+8JpW4=",
+                "-----END CERTIFICATE-----"
+              ],
+              "key": [
+                "-----BEGIN RSA PRIVATE KEY-----",
+                "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg0CjKHwEhgSj7yl1H",
+                "tltRMlgEg8QvpyMuz1oSV8kWp4GhRANCAAR59plymN9uYMmgKLq1KnyA49WDc4+h",
+                "yg7yqf4JPXRyqO7KNdcpnADF4MVma4rWLDTBKbcxSehXJStNFHx6T2FE",
+                "-----END RSA PRIVATE KEY-----"
+              ]
+            }
+          ]
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "tag": "ws-tls-8396"
+    },
+    {
+      "listen": "0.0.0.0",
+      "port": 80,
+      "protocol": "vmess",
+      "allocate": {
+        "strategy": "always"
+      },
+      "settings": {
+        "clients": [],
+        "default": {
+          "level": 0,
+          "alterId": 0
+        },
+        "disableInsecureEncryption": false
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none",
+        "tcpSettings": {
+          "header": {
+            "type": "http",
+            "request": {
+              "path": [ "/" ],
+              "headers": {}
+            }
+          }
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "tag": "tcp-HttpHeader-80"
+    },
+    {
+      "listen": "0.0.0.0",
+      "port": 443,
+      "protocol": "vmess",
+      "allocate": {
+        "strategy": "always"
+      },
+      "settings": {
+        "clients": [],
+        "default": {
+          "level": 0,
+          "alterId": 0
+        },
+        "disableInsecureEncryption": false
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "bmi.ir",
+          "certificates": [
+            {
+              "certificate": [
+                "-----BEGIN CERTIFICATE-----",
+                "MIIBtzCCAV6gAwIBAgIQA379XEEI3QU5yYbh2f8avTAKBggqhkjOPQQDAjAoMRIw",
+                "EAYDVQQKEwlWMlJheSBJbmMxEjAQBgNVBAMTCVYyUmF5IEluYzAeFw0yMjExMDgy",
+                "MjAzMDdaFw0yMzAyMDYyMzAzMDdaMCgxEjAQBgNVBAoTCVYyUmF5IEluYzESMBAG",
+                "A1UEAxMJVjJSYXkgSW5jMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEefaZcpjf",
+                "bmDJoCi6tSp8gOPVg3OPocoO8qn+CT10cqjuyjXXKZwAxeDFZmuK1iw0wSm3MUno",
+                "VyUrTRR8ek9hRKNqMGgwDgYDVR0PAQH/BAQDAgKkMBMGA1UdJQQMMAoGCCsGAQUF",
+                "BwMBMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFMaHDvHrSDkb+1h05HP/SIhX",
+                "H3AVMBEGA1UdEQQKMAiCBmJtaS5pcjAKBggqhkjOPQQDAgNHADBEAiAgTA1Gpzyb",
+                "93id8GjOhIFV07xujMCgngOVT/FA/xieRgIgbBsgqwDWDwWPNijmcm0GKEhm+DnH",
+                "CqpPuAX87+8JpW4=",
+                "-----END CERTIFICATE-----"
+              ],
+              "key": [
+                "-----BEGIN RSA PRIVATE KEY-----",
+                "MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg0CjKHwEhgSj7yl1H",
+                "tltRMlgEg8QvpyMuz1oSV8kWp4GhRANCAAR59plymN9uYMmgKLq1KnyA49WDc4+h",
+                "yg7yqf4JPXRyqO7KNdcpnADF4MVma4rWLDTBKbcxSehXJStNFHx6T2FE",
+                "-----END RSA PRIVATE KEY-----"
+              ]
+            }
+          ]
+        },
+        "tcpSettings": {
+          "header": {
+            "type": "none"
+          }
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "tag": "tcp-tls-443"
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "blocked"
+    }
+  ],
+  "transport": null,
+  "policy": {
+    "levels": {
+      "0": {
+        "statsUserUplink": true,
+        "statsUserDownlink": true
+      }
+    },
+    "system": {
+      "statsInboundUplink": true,
+      "statsInboundDownlink": true,
+      "statsOutboundUplink": true,
+      "statsOutboundDownlink": true
+    }
+  },
+  "stats": {},
+  "reverse": null,
+  "fakeDns": null
+}

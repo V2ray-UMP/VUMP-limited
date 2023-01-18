@@ -30,7 +30,6 @@ class CustomUserManager(BaseUserManager, BaseManager):
             password=password,
             is_staff=True,
             is_superuser=True,
-            role=CustomUser.ROLE_GODFATHER,
             **extra_fields,
         )
         return user
