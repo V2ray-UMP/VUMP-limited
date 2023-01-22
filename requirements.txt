@@ -5,3 +5,7 @@ django-admin-env-notice==0.4
 django-admin-easy==0.6.1
 django-import-export==3.0.1
 django-jazzmin==2.6.0
+python-telegram-bot==20
+celery==5.2.7
+django-celery-beat==2.4.0
+jdatetime==4.1.0

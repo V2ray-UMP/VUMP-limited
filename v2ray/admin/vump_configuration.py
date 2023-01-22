@@ -12,6 +12,7 @@ class VUMPConfigurationAdmin(BaseAdmin):
         'v2ray_api_port',
         'v2ray_config_file_path',
         'max_traffic',
+        'tg_bot_token',
     )
 
     def has_delete_permission(self, request, obj=None):

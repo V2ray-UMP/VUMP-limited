@@ -29,6 +29,11 @@ class VUMPConfiguration(SingletonModel):
         allow_folders=False,
     )
     max_traffic = models.PositiveIntegerField(verbose_name=_('Max Traffic'))
+    tg_bot_token = models.CharField(
+        verbose_name=_('TG Bot Token'),
+        max_length=46,
+        null=True, blank=True,
+    )
 
     @classmethod
     def get_instance(cls) -> 'VUMPConfiguration':
